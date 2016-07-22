@@ -297,7 +297,7 @@ class Game(object):
                 return 2
         return -1
 
-    def best_move_3(self):  # this method tries to fine the best move and make analysis of the situation on the board
+    def best_move_3(self):  # this method tries to find the best move and make analysis of the situation on the board
         best = [-1, 0]  # the first element is a coordinate of best move and the second is a value of this move
         for i in range(self.board_size * self.board_size):
             if self.board[i] == "#":
@@ -391,56 +391,27 @@ class Game(object):
                                     unexp = randint(0, 8)
                                 self.board[unexp] = self.bot_turn
                 if self.turn == 3:
-                    coord = self.check_for_danger_3()
-                    if coord[0] != -1:
-                        self.board[coord[1]] = self.bot_turn
+                    if self.board[0] == self.board[8] != "#" or self.board[2] == self.board[6] != "#":
+                        unexp = randint(0, 3)
+                        if unexp == 0:
+                            self.board[1] = self.bot_turn
+                        if unexp == 1:
+                            self.board[3] = self.bot_turn
+                        if unexp == 2:
+                            self.board[5] = self.bot_turn
+                        if unexp == 3:
+                            self.board[7] = self.bot_turn
                     else:
-                        coord = self.best_move_3()
-                        if coord != -1:
-                            self.board[coord] = self.bot_turn
+                        coord = self.check_for_danger_3()
+                        if coord[0] != -1:
+                            self.board[coord[1]] = self.bot_turn
                         else:
-                            self.random_move()
-                if self.turn == 4:
-                    coord = self.check_for_danger_3()
-                    if coord[0] != -1:
-                        self.board[coord[1]] = self.bot_turn
-                    else:
-                        coord = self.best_move_3()
-                        if coord != -1:
-                            self.board[coord] = self.bot_turn
-                        else:
-                            self.random_move()
-                if self.turn == 5:
-                    coord = self.check_for_danger_3()
-                    if coord[0] != -1:
-                        self.board[coord[1]] = self.bot_turn
-                    else:
-                        coord = self.best_move_3()
-                        if coord != -1:
-                            self.board[coord] = self.bot_turn
-                        else:
-                            self.random_move()
-                if self.turn == 6:
-                    coord = self.check_for_danger_3()
-                    if coord[0] != -1:
-                        self.board[coord[1]] = self.bot_turn
-                    else:
-                        coord = self.best_move_3()
-                        if coord != -1:
-                            self.board[coord] = self.bot_turn
-                        else:
-                            self.random_move()
-                if self.turn == 7:
-                    coord = self.check_for_danger_3()
-                    if coord[0] != -1:
-                        self.board[coord[1]] = self.bot_turn
-                    else:
-                        coord = self.best_move_3()
-                        if coord != -1:
-                            self.board[coord] = self.bot_turn
-                        else:
-                            self.random_move()
-                if self.turn == 8:
+                            coord = self.best_move_3()
+                            if coord != -1:
+                                self.board[coord] = self.bot_turn
+                            else:
+                                self.random_move()
+                if 3 < self.turn < 9:
                     coord = self.check_for_danger_3()
                     if coord[0] != -1:
                         self.board[coord[1]] = self.bot_turn
