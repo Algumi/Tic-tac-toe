@@ -463,8 +463,8 @@ def start_game():  # greetings and initialization of settings
     board_size = 3
     complexity = 100
     print "-----Welcome to the tic-tac-toe-----"
-    print ">> would you like to change standard options of the game?"
-    print "1 option - to play a standard game"
+    print ">> would you like to change standard options(first turn, difficulty: 100%)?"
+    print "1 option - to play with standard options"
     print "2 option - to change the options"
     print ">> please enter 1 or 2 to make a choice: "
     pref = int(raw_input())
