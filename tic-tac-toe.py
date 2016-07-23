@@ -36,15 +36,19 @@ class Game(object):
     def read_turn(self):  # reads the coordinates of player's move
             print "It's your turn!"
             self.print_board()
-            print ">> please, enter the coordinates of your turn:"
-            x = int(raw_input("X: "))
-            while x < 0 or x > self.board_size:  # checks if players move is correct
-                print "there is no such coordinate, enter the correct number: "
-                x = int(raw_input("X: "))
-            y = transform_letter(raw_input("Y: "))
-            while y < 0 or y > self.board_size:  # checks if players move is correct
-                print "there is no such coordinate, enter the correct number: "
-                y = int(raw_input("Y: "))
+            print ">> please, enter the coordinates of your turn(example: b2):"
+            input_move = raw_input()
+            while not len(input_move) == 2:  # checks if players move is correct
+                print 'try again, your input should look like "b2"'
+                input_move = raw_input()
+            if (not 'a' <= input_move[0] <= 'z') or (not '0' <= input_move[1] <= '9'):
+                print "not correct input"
+                return -1
+            y = transform_letter(input_move[0])
+            x = int(input_move[1])
+            if (not 0 <= x < self.board_size) or (not 0 <= y < self.board_size):
+                print "there is no such coordinate"
+                return -1
             coord = x + y * self.board_size
             if self.board[coord] != "#":
                 print "this cell is not empty, try again"
